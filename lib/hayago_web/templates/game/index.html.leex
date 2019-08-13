@@ -1,8 +1,10 @@
-<div class="board <%= @state.current %>">
-  <!--  loop over all positions in the @state struct -->
-  <!-- assigned in the live view and an empty <button> elements for each -->
-  <%= for _position <- @state.positions do %>
 
-  <button></button>
+<div class="board <%= @state.current %>">
+  <%= for {value, index} <- Enum.with_index(@state.positions) do %>
+    <%= if Hayago.State.legal?(@state, index) do %>
+      <button phx-click="place" phx-value="<%= index %>" class="<%= value %>"></button>
+    <% else %>
+      <button class="<%= value %>" disabled="disabled"></button>
+    <% end %>
   <% end %>
 </div>
