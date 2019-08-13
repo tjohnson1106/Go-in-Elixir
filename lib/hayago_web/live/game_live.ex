@@ -11,8 +11,8 @@ defmodule HayagoWeb.GameLive do
     {:ok, assign(socket, game: game, state: Game.state(game))}
   end
 
-  def handle_event("place", index, %{assigns: assigns} = socket) do
-    new_game = Game.place(assigns.game, String.to_integer(index))
+  def handle_event("jump", destination, %{assigns: %{game: game} = socket}) do
+    new_game = Game.jump(game, String.to_integer(destination))
     {:noreply, assign(socket, game: new_game, state: Game.state(new_game))}
   end
 end
