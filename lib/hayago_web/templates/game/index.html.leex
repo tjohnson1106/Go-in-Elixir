@@ -13,8 +13,8 @@
 </div>
 
 <div class="board <%= @state.current %>">
-  <%= for {value, index} <- Enum.with_index(@state.positions) do %> <%= if
-  Hayago.State.legal?(@state, index) do %>
+  <%= for {value, index} <- Enum.with_index(@state.positions) do %> 
+  <%= if Hayago.State.legal?(@state, index) do %>
   <button
     phx-click="place"
     phx-value="<%= index %>"
