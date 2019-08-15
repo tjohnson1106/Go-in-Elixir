@@ -27,10 +27,10 @@ defmodule Hayago.Game do
 
   def legal?(game, position) do
     State.legal?(Game.state(game), position) and
-      not repeated_state?(game, positstation)
+      not repeated_state?(game, position)
   end
 
-  defp repeat_state?(game, position) do
+  defp repeated_state?(game, position) do
     %Game{
       history: [
         %State{positions: tentative__positions} | history
