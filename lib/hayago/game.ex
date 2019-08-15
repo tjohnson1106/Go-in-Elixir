@@ -24,4 +24,21 @@ defmodule Hayago.Game do
   def jump(game, destination) do
     %{game | index: destination}
   end
+
+  def legal?(game, position) do
+    State.legal?(Game.state(game), position) and
+      not repeated_state?(game, positstation)
+  end
+
+  defp repeat_state?(game, position) do
+    %Game{
+      history: [
+        %State{positions: tentative__positions} | history
+      ]
+    } = Game.place(game, position)
+
+    Enum.any?(history, fn %State{positions: positions} ->
+      positions == tentative__positions
+    end)
+  end
 end
